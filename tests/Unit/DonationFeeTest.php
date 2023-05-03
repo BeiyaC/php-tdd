@@ -26,7 +26,7 @@ class DonationFeeTest extends TestCase
         $donationFees = new \App\Support\DonationFee(200, 10);
 
         // Lorsque qu'on appel la méthode getCommissionAmount()
-        $actual = $donationFees->getCommissionAmount();
+        $actual = $donationFees->getCommissionlsAmount();
 
         // Alors la Valeur de la commission doit être de 20
         $expected = 20;
