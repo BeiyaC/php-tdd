@@ -19,6 +19,9 @@ RUN apk update && \
 RUN pecl install mcrypt && \
     docker-php-ext-enable mcrypt
 
+RUN docker-php-ext-install pdo_mysql
+RUN pecl install xdebug-3.1.5 && \
+    docker-php-ext-enable xdebug
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
