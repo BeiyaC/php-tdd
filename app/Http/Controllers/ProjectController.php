@@ -10,7 +10,8 @@ class ProjectController extends Controller
 
     public function index()
     {
-        return view('projects.index');
+        $projects = Project::all();
+        return view('projects.index', ['projects' => $projects]);
     }
 
     public function create()
@@ -20,7 +21,13 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $project = new Project;
+        $project->project_name = $request['project_name'];
+        $project->description = $request['description'];
+        $project->user_id = auth()->user()->id;
+        $project->save();
+
+        return redirect('/project')->with('success', 'Project created successfully.');
     }
 
     public function show(Project $project)
@@ -35,7 +42,14 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project)
     {
-        //
+
+        $project->project_name = $request->project_name;
+        $project->description = $request->description;
+        $project->user_id = auth()->user()->id;
+
+        $project->save();
+
+        return redirect('/project');
     }
 
     public function destroy(Project $project)
